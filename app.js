@@ -7,10 +7,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 
 const app = express();
-//const router = express.Router();
-//const users = require('./routes/users');
-const users = require('/routes/users');
-
+const users = require('./routes/users');
 
 // --- Port Number
 const port = 3000;
@@ -20,7 +17,8 @@ app.use(cors());
 
 // --- Body Parser Middleware
 app.use(bodyParser.json());
-//app.use('/users', users);
+
+app.use('/users', users);
 
 // --- Index Route
 app.get('/', (req, res) => {
