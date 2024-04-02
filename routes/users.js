@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // -- Register
-router.get('/register', (req, res, next) => {
+router.post('/register', (req, res, next) => {
     res.send('REGISTER');
 
 });
@@ -15,18 +15,12 @@ router.post('/authenticate', (req, res, next) => {
 
 
 // -- Profile
-// -- Register
 router.get('/profile', (req, res, next) => {
     res.send('PROFILE');
 
 });
 
 
-// -- Validate
-router.get('/validate', (req, res, next) => {
-    res.send('VALIDATE');
-
-});
 
 
 module.exports = router;
