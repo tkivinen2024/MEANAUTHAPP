@@ -1,4 +1,3 @@
-
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -19,7 +18,6 @@ mongoose.connection.on('connected', () => {
 mongoose.connection.on('error', (err) => {
     console.log('Database Error: ' + config.database)  
   })
-
 
 const app = express();
 

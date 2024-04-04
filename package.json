@@ -14,7 +14,7 @@
     "express": "*",
     "jsonwebtoken": "*",
     "mongoose": "^5.13.22",
-    "passport": "*",
+    "passport": "^0.4.0",
     "passport-jwt": "*"
   },
   "author": "Timo Kivinen",
