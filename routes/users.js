@@ -47,7 +47,7 @@ router.post('/authenticate', (req, res, next) => {
             console.log('USER PASSWORD:' + user.password);
 
             if(err) throw err;
-            if(!!isMatch) {
+            if(isMatch) {
                 console.log('********isMatch OK');
                  // 1 week
 
@@ -74,11 +74,12 @@ router.post('/authenticate', (req, res, next) => {
 });
 
 
-
-// -- Profile
-router.get('/profile', (req, res, next) => {
-    res.send('PROFILE');
-
+// -----------------------------------------------------
+// --- Profile
+// -----------------------------------------------------
+router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
+    //res.send('PROFILE');
+    res.json({user: req.user});
 });
 
 
