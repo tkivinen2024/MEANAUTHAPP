@@ -14,38 +14,34 @@ export class RegisterComponent implements OnInit {
   email: String;
   password: String;
 
-  constructor(private validateService: ValidateService) { }
+  constructor(private validateService: ValidateService, private flashMessage: FlashMessagesService) { }
 
   ngOnInit() {
   }
   onRegisterSubmit(){
-    console.log('**1');
     console.log(this.name);
     console.log(this.username);
     console.log(this.email);
     console.log(this.password);
 
-    console.log('**2');
     const user = {
       name: this.name,
       email: this.email,
       username: this.username,
       password: this.password
     }
-    console.log('**3');
+
     // Required fields
     if(!this.validateService.validateRegister(user)) {
-      console.log('**3b');
-      console.log('Please in fill all fields');
+      //console.log('Please in fill all fields');
+      this.flashMessage.show('Please in fill all fields', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
-    console.log('**4');
     // Required Email
     if(!this.validateService.validateEmail(user.email)) {
-      console.log('**4b');
-      console.log('Please use a valid email');
+      //console.log('Please use a valid email');
+      this.flashMessage.show('Please use a valid email', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
-    console.log('**5');
   }
 }
