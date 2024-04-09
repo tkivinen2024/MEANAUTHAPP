@@ -8,13 +8,14 @@
     "start": "node app"
   },
   "dependencies": {
+    "angular2-flash-messages": "^1.0.8",
     "bcryptjs": "*",
     "body-parser": "*",
     "cors": "*",
     "express": "*",
     "jsonwebtoken": "*",
     "mongoose": "^5.13.22",
-    "passport": "^0.4.0",
+    "passport": "^0.7.0",
     "passport-jwt": "*"
   },
   "author": "Timo Kivinen",
