@@ -15,8 +15,10 @@
     "express": "*",
     "jsonwebtoken": "*",
     "mongoose": "^5.13.22",
-    "passport": "^0.7.0",
-    "passport-jwt": "*"
+    "passport": "^0.4.0",
+    "passport-jwt": "*",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1"
   },
   "author": "Timo Kivinen",
   "license": "ISC"
