@@ -49,5 +49,15 @@ export class AuthService {
   //  let httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
   //  return this.http.post<any>('http://localhost:3000/users/register', user, httpOptions);
   //}
+
+  authenticateUser(user: { username: String; password: String; }) {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/users/authenticate', user, {
+      headers: headers,
+      observe: 'response'
+    }).pipe(map((res:HttpResponse<JSON>)=> res));
+
+  }
         
 }
