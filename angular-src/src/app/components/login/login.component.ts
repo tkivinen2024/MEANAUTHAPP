@@ -29,7 +29,16 @@ export class LoginComponent implements OnInit {
     }
     this.authService.authenticateUser(user).subscribe(data => {
       console.log(data);
+      if(data.success) {
+
+      } else {
+        this.flashMessage.show(data.msg, {
+          cssClass: 'alert-danger',
+          timeout: 5000});
+        this.router.navigate(['login']);  
+      }
+      
     });
 
-  }
+  }  
 }

@@ -30,7 +30,9 @@ export class AuthService {
       headers: headers,
       observe: 'response'
     }).pipe(map((res:HttpResponse<JSON>)=> res));
+  }
 
+  
 /*
   registerUser(user) {
     let headers = new HttpHeaders();
@@ -43,7 +45,7 @@ export class AuthService {
 */
 
     //return this.http.post('http://localhost:3000/users/register', user, {headers: headers}).pipe(map((res: any) => res.json));
-  }
+
 
   //registerUser(user): Observable<any> {
   //  let httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
@@ -51,13 +53,25 @@ export class AuthService {
   //}
 
   authenticateUser(user: { username: String; password: String; }) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    return this.http.post<any>('http://localhost:3000/users/authenticate', user, httpOptions);
+  }
+  
+
+
+/* OK-1
+  authenticateUser(user: { username: String; password: String; }) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:3000/users/authenticate', user, {
       headers: headers,
       observe: 'response'
     }).pipe(map((res:HttpResponse<JSON>)=> res));
-
   }
+  */
         
 }
