@@ -79,7 +79,7 @@ export class AuthService {
  // ----------------------------------------------------------
  // ---
  // ----------------------------------------------------------
- 
+ /* NS OK
  getProfile() {
   const httpOptions = {
     headers: new HttpHeaders({
@@ -90,6 +90,16 @@ export class AuthService {
   httpOptions.headers.append('Content-Type', 'application/json');
   this.loadToken();
   return this.http.get<any>('http://localhost:3000/users/profile', httpOptions);
+}
+*/
+  
+getProfile() {
+  let headers = new HttpHeaders();
+  this.loadToken();
+  headers.append('Authorization', 'Bearer ' + this.authToken);
+  headers.append('Authorization', this.authToken);
+  headers.append('Content-Type', 'application/json');
+  return this.http.get<any>('http://localhost:3000/users/profile', {headers: headers});
 }
 
 /*
