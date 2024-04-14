@@ -4,6 +4,9 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 //import 'rxjs/add/operator/map';
 import { map } from "rxjs/operators";
 
+import{tokenNotExpired} from 'angular2-jwt'
+
+
 
 @Injectable()
 export class AuthService {
@@ -76,12 +79,47 @@ export class AuthService {
  // ----------------------------------------------------------
  // ---
  // ----------------------------------------------------------
+ 
+ getProfile() {
+  const httpOptions = {
+    headers: new HttpHeaders({
+      //'Content-Type':  'application/json'
+    })
+  };
+  httpOptions.headers.append('Authorization', this.authToken);
+  httpOptions.headers.append('Content-Type', 'application/json');
+  this.loadToken();
+  return this.http.get<any>('http://localhost:3000/users/profile', httpOptions);
+}
+
+/*
+getProfile() {
+  let headers = new Headers();
+  this.loadToken();
+  headers.append('Authorization', this.authToken);
+  headers.append('Content-Type','application/json');
+  return this.http.get('http://localhost:3000/users/profile', {headers: headers})
+    .map(res => res.json());
+}
+*/
+loadToken() {
+  const token = localStorage.getItem('id_token');
+  this.authToken = token;
+}
+
   storeUserData(token, user) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
     this.user = user;
   }
+
+  // Timestamp: 12:50 - If the tokenNotExpired() is not working, use tokenNotExpired("id_token")
+  loggedIn() {
+    //return tokenNotExpired();
+    return tokenNotExpired("id_token");
+  }
+
 
   logout() {
     this.authToken = null;
